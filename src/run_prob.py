@@ -4,9 +4,9 @@ import pandas as pd
 import os
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
-import utils
 from utils import logger
-
+from utils import utils
+from loguru import logger
 
 params_default = {
     'booster': 'gbtree',
@@ -30,12 +30,8 @@ def train_and_test(stock_id = 1,train_ratio=0.8,label_number = 0,params = params
     print("数据加载完毕")
     y_train = y_train.iloc[:,label_number]
     y_test = y_test.iloc[:,label_number]
-
-    # 计算样本量作为权重
     weights = weights
-
     model = utils.train(x_train,y_train,params = params,stock_id = stock_id,label_number = label_number,num_round = num_round,my_weights = weights)
-    model.save_model(f"model_{stock_id}.json")
     print("模型训练完毕")
     y_predict = utils.predict(x_test,model,threshold=threshold)
     new_y_predict = utils.predict_with_possibility(x_test,model)
@@ -45,7 +41,7 @@ def train_and_test(stock_id = 1,train_ratio=0.8,label_number = 0,params = params
     utils.cal_average_pnl(y_predict,ask_1,bid_1)
     print("模型测试完毕\n------------------------------------\n")
 
-train_and_test(stock_id=4,label_number=2,train_ratio=0.99,threshold=0.63) 
+train_and_test(stock_id=1,label_number=2,train_ratio=0.8,threshold=0.68) 
 
 # logger.success("Start to search for best hyperparameter!")
 # for stock_id in range(0,5,1):

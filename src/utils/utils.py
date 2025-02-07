@@ -77,7 +77,7 @@ def cal_average_pnl(label,ask_1,bid_1,window = 20):
     
 
 def data_loader(stock_id = 0,train_ratio=0.8,label_number = 0):
-    base_path = "E:/vscode_file/python/FBDQA/final_project/LOB-Predict/data/FBDQA/ML_data_300/"
+    base_path = "data/FBDQA/ML_data_300/"
     file_name = f"stock_{stock_id}_features.csv"
     file_name = os.path.join(base_path, file_name)
     all_datasets = pd.read_csv(file_name)
@@ -95,7 +95,7 @@ def data_loader(stock_id = 0,train_ratio=0.8,label_number = 0):
     return x_train, y_train, x_test, y_test
 
 def data_loader_for_many_stocks(stock_id_1 = 0,stock_id_2 = 1,train_ratio = 0.8,label_numer = 0):
-    base_path = "E:/vscode_file/python/FBDQA/1/LOB-Predict/data/FBDQA/ML_data/"
+    base_path = "data/FBDQA/ML_data_300/"
     file_name = f"stock_{stock_id_1}_features.csv"
     file_name = ""
     file_name = os.path.join(base_path,file_name)
