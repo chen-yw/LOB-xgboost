@@ -77,7 +77,7 @@ def cal_average_pnl(label,ask_1,bid_1,window = 20):
     
 
 def data_loader(stock_id = 0,train_ratio=0.8,label_number = 0):
-    base_path = "data/FBDQA/ML_data_300/"
+    base_path = "data/FBDQA/ML_data_300_with_new_label/"
     file_name = f"stock_{stock_id}_features.csv"
     file_name = os.path.join(base_path, file_name)
     all_datasets = pd.read_csv(file_name)

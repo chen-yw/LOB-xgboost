@@ -23,7 +23,7 @@ params_default = {
 
 num_round_default = 100 
 
-def train_and_test(stock_id = 1,train_ratio=0.8,label_number = 0,params = params_default,num_round = 100,threshold = 0.7,weights = [1,1.5,1]):
+def train_and_test(stock_id = 1,train_ratio=0.8,label_number = 0,params = params_default,num_round = 100,threshold = 0.7,weights = [1,1,1]):
     print("数据开始加载")
     logger.success(f"\nstock_id:{stock_id}, label_number:{label_number}, num_round:{num_round}, threshold={threshold}")
     x_train,y_train,x_test,y_test = utils.data_loader(stock_id = stock_id,train_ratio=train_ratio,label_number = label_number)
@@ -41,16 +41,16 @@ def train_and_test(stock_id = 1,train_ratio=0.8,label_number = 0,params = params
     utils.cal_average_pnl(y_predict,ask_1,bid_1)
     print("模型测试完毕\n------------------------------------\n")
 
-train_and_test(stock_id=1,label_number=2,train_ratio=0.8,threshold=0.68) 
+train_and_test(stock_id=1,label_number=3,train_ratio=0.8,threshold=0.45,weights=[1,1,1]) 
 
 # logger.success("Start to search for best hyperparameter!")
-# for stock_id in range(0,5,1):
-#     for label_number in range(2,3,1):
-#         for max_depth in range(2,8,1):
+# for stock_id in range(0,10,1):
+#     for label_number in range(3,4,1):
+#         for max_depth in range(2,7,1):
 #             params_default['max_depth'] = max_depth
-#             for threshold in np.arange(0.5,0.76,0.05):
+#             for threshold in np.arange(0.3,0.55,0.05):
 #                     logger.success(f"\nstock_id:{stock_id}, label_number:{label_number}, max_depth:{max_depth}, threshold:{threshold}")
-#                     train_and_test(stock_id=stock_id,label_number=label_number,threshold=threshold)
+#                     train_and_test(stock_id=stock_id,label_number=label_number,threshold=threshold,weights=[1.2,1,1])
 
 def test_for_cal_avergae_pnl(stock_id = 1,train_raio=0.8,label_number = 0,params = params_default,num_round = 100,weights = [1,1,1]):
     print(f"stock_id:{stock_id}, label_number:{label_number},num_round={num_round}")
